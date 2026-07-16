@@ -116,7 +116,7 @@ const mapSrcFor = (post: SitePost) => {
 export function TaskDetailView({ task, post, related, comments = [] }: { task: TaskKey; post: SitePost; related: SitePost[]; comments?: Array<{ id: string; name: string; comment: string; createdAt: string }> }) {
   return (
     <EditableSiteShell>
-      <main style={taskThemeStyle(task)} className="min-h-screen bg-[var(--tk-bg)] text-[var(--tk-text)]">
+      <main style={taskThemeStyle(task)} className={`min-h-screen bg-[var(--tk-bg)] text-[var(--tk-text)] ${task === 'listing' ? 'listing-detail-page' : ''}`}>
         {task === 'listing' ? <ListingDetail post={post} related={related} /> : null}
         {task === 'classified' ? <ClassifiedDetail post={post} related={related} /> : null}
         {task === 'image' ? <ImageDetail post={post} related={related} /> : null}
@@ -220,12 +220,12 @@ function ListingDetail({ post, related }: { post: SitePost; related: SitePost[] 
   const website = getField(post, ['website', 'url'])
   const mapSrc = mapSrcFor(post)
   return (
-    <section className="mx-auto max-w-[var(--editable-container)] px-6 py-14 sm:py-20 lg:px-8">
+    <section className="listing-detail-shell mx-auto max-w-[var(--editable-container)] px-6 py-14 sm:py-20 lg:px-8">
       <BackLink task="listing" />
-      <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
-        <article className="min-w-0">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-            <div className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[var(--tk-radius)] border border-[var(--tk-line)] bg-[var(--tk-raised)]">
+      <div className="listing-detail-grid mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
+        <article className="listing-detail-article min-w-0">
+          <div className="listing-detail-heading flex flex-col gap-6 sm:flex-row sm:items-center">
+            <div className="listing-detail-logo flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-[var(--tk-radius)] border border-[var(--tk-line)] bg-[var(--tk-raised)]">
               {logo ? <img src={logo} alt="" className="h-full w-full object-cover" /> : <Building2 className="h-12 w-12 text-[var(--tk-muted)]" />}
             </div>
             <div className="min-w-0">
@@ -240,7 +240,7 @@ function ListingDetail({ post, related }: { post: SitePost; related: SitePost[] 
           <BodyContent post={post} />
           <ImageStrip images={images.slice(1)} label="Showcase" />
         </article>
-        <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+        <aside className="listing-detail-sidebar space-y-6 lg:sticky lg:top-24 lg:self-start">
           {mapSrc ? <MapBox src={mapSrc} label={address || post.title} /> : null}
           <ContactAction website={website} phone={phone} email={email} />
           <RelatedPanel task="listing" post={post} related={related} />
@@ -567,4 +567,3 @@ function RelatedCard({ task, post, grid = false }: { task: TaskKey; post: SitePo
     </Link>
   )
 }
-
