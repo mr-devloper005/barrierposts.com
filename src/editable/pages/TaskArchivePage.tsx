@@ -109,10 +109,10 @@ export function TaskArchiveView({ task, posts, pagination, category, basePath }:
 
   return (
     <EditableSiteShell>
-      <main style={taskThemeStyle(task)} className="min-h-screen bg-[var(--tk-bg)] text-[var(--tk-text)]">
-        <header className="relative overflow-hidden border-b border-[var(--tk-line)]">
+      <main style={taskThemeStyle(task)} className={`min-h-screen bg-[var(--tk-bg)] text-[var(--tk-text)] ${task === 'listing' ? 'listing-archive-page' : ''}`}>
+        <header className="task-archive-hero relative overflow-hidden border-b border-[var(--tk-line)]">
           <div className="pointer-events-none absolute inset-x-0 -top-40 h-96 bg-[radial-gradient(60%_60%_at_50%_0%,var(--tk-glow),transparent_70%)]" />
-          <div className="relative mx-auto max-w-[var(--editable-container)] px-6 py-20 sm:py-28 lg:px-8">
+          <div className="task-archive-hero-inner relative mx-auto max-w-[var(--editable-container)] px-6 py-20 sm:py-28 lg:px-8">
             <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.34em] text-[var(--tk-accent)]">
               <span>{theme.kicker}</span>
               <span className="h-1 w-1 rounded-full bg-[var(--tk-accent)] opacity-50" />
@@ -132,7 +132,7 @@ export function TaskArchiveView({ task, posts, pagination, category, basePath }:
 
             <div className="mt-12 flex flex-col gap-4 border-t border-[var(--tk-line)] pt-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-[var(--tk-muted)]">
-                <span className="font-semibold text-[var(--tk-text)]">{posts.length}</span> {posts.length === 1 ? 'post' : 'posts'} · {categoryLabel}
+                <span className="font-semibold text-[var(--tk-text)]">{posts.length}</span> {task === 'listing' ? (posts.length === 1 ? 'business' : 'businesses') : (posts.length === 1 ? 'post' : 'posts')} · {categoryLabel}
               </p>
               <form action={basePath} className="flex items-center gap-2.5">
                 <div className="relative">
@@ -153,7 +153,7 @@ export function TaskArchiveView({ task, posts, pagination, category, basePath }:
           </div>
         </header>
 
-        <section className="mx-auto max-w-[var(--editable-container)] px-6 py-16 sm:py-20 lg:px-8">
+        <section className="task-archive-content mx-auto max-w-[var(--editable-container)] px-6 py-16 sm:py-20 lg:px-8">
           {posts.length ? (
             <div className={taskGrid[task]}>
               {posts.map((post, index) => <ArchivePostCard key={post.id || post.slug} post={post} task={task} basePath={basePath} index={index} />)}
@@ -162,7 +162,7 @@ export function TaskArchiveView({ task, posts, pagination, category, basePath }:
             <div className="mx-auto max-w-xl rounded-[var(--tk-radius)] border border-dashed border-[var(--tk-line)] bg-[var(--tk-surface)] px-8 py-16 text-center">
               <Search className="mx-auto h-7 w-7 text-[var(--tk-muted)]" />
               <h2 className="editable-display mt-5 text-2xl font-semibold tracking-[-0.02em]">Nothing here yet</h2>
-              <p className="mt-2 text-sm leading-6 text-[var(--tk-muted)]">Try another category, or check back after new {label.toLowerCase()} are published.</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--tk-muted)]">Try another category, or check back when new {label.toLowerCase()} are added.</p>
             </div>
           )}
 
@@ -261,11 +261,11 @@ function ListingArchiveCard({ post, href }: { post: SitePost; href: string }) {
   const phone = getField(post, ['phone', 'telephone', 'mobile'])
   const website = getField(post, ['website', 'url'])
   return (
-    <Link href={href} className={`${cardBase} flex items-center gap-5 p-5 sm:p-6`}>
-      <div className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-[1rem] border border-[var(--tk-line)] bg-[var(--tk-raised)]">
+    <Link href={href} className={`${cardBase} listing-archive-card flex items-center gap-5 p-5 sm:p-6`}>
+      <div className="listing-archive-media flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-[1rem] border border-[var(--tk-line)] bg-[var(--tk-raised)]">
         {logo ? <img src={logo} alt="" className="h-full w-full object-cover" /> : <BriefcaseBusiness className="h-9 w-9 text-[var(--tk-muted)]" />}
       </div>
-      <div className="min-w-0 flex-1">
+      <div className="listing-archive-copy min-w-0 flex-1">
         <h2 className="editable-display truncate text-xl font-semibold tracking-[-0.02em]">{post.title}</h2>
         <RatingLine post={post} />
         <p className="mt-2 line-clamp-1 text-sm leading-6 text-[var(--tk-muted)]">{getSummary(post)}</p>

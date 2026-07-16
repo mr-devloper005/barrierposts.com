@@ -3,19 +3,19 @@ import { slot4BrandConfig } from '@/editable/theme/brand.config'
 export const pagesContent = {
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
-      description: 'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
-      openGraphDescription: 'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+      title: 'Discover businesses, products, and services',
+      description: 'Find and compare business listings, products, and professional services in one practical directory.',
+      openGraphTitle: 'Discover businesses, products, and services',
+      openGraphDescription: 'Browse useful business listings and discover products and services that match your needs.',
+      keywords: ['business directory', 'business listings', 'local services', 'products and services'],
     },
     hero: {
-      badge: 'Latest stories and visuals',
-      title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
-      description: 'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
-      primaryCta: { label: 'Read latest stories', href: '/article' },
-      secondaryCta: { label: 'Explore visuals', href: '/image' },
-      searchPlaceholder: 'Search stories, visuals, listings, and more',
+      badge: 'Featured business listings',
+      title: ['Find businesses, products,', 'and services with confidence.'],
+      description: 'Browse current business listings, compare available options, and discover services suited to your needs.',
+      primaryCta: { label: 'Browse businesses', href: '/business-listing' },
+      secondaryCta: { label: 'Add a listing', href: '/create' },
+      searchPlaceholder: 'Search businesses, products, and services',
       focusLabel: 'Focus',
       featureCardBadge: 'latest cover rotation',
       featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
@@ -106,12 +106,12 @@ export const pagesContent = {
     },
     hero: {
       badge: 'Publishing workspace',
-      title: 'Create content for every active section.',
-      description: 'Choose the content type, add details, and prepare a clean post with images, links, summary, and body content.',
+      title: 'Create a business listing.',
+      description: 'Add your business details, website, image, summary, and service information for customers to discover.',
     },
-    formTitle: 'Content details',
-    submitLabel: 'Submit content',
-    successTitle: 'Content submitted successfully.',
+    formTitle: 'Business details',
+    submitLabel: 'Submit listing',
+    successTitle: 'Business listing submitted successfully.',
   },
   auth: {
     login: {
