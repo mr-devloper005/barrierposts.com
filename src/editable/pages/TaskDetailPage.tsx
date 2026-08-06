@@ -201,6 +201,16 @@ function ArticleDetail({ post, related, comments }: { post: SitePost; related: S
         <div className="mt-6 text-sm text-[var(--tk-muted)]">
           <span>{SITE_CONFIG.name}</span>
         </div>
+        {post.tags && post.tags.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {post.tags.map((tag) => (
+              <span key={tag} className="inline-flex items-center gap-1.5 rounded-full border border-[var(--tk-line)] bg-[var(--tk-surface)] px-3 py-1 text-xs font-medium text-[var(--tk-muted)]">
+                <Tag className="h-3 w-3 text-[var(--tk-accent)]" />
+                {tag}
+              </span>
+            ))}
+          </div>
+        ) : null}
         {images[0] ? <img src={images[0]} alt="" className="mt-10 aspect-[16/9] w-full rounded-[var(--tk-radius)] border border-[var(--tk-line)] object-cover" /> : null}
         <BodyContent post={post} />
         <EditableArticleComments slug={post.slug} comments={comments} />
